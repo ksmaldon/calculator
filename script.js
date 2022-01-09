@@ -1,21 +1,18 @@
+//VARIABLES
+let num1;
+let num2;
+let operation;
+let numberArray = [];
+
+
 //DOM ELEMENTS
-
-//Display
 const display_div = document.querySelector(".display");
-//Numbers
-// const seven_button = document.getElementById("seven");
-// const eight_button = document.getElementById("eight");
-// const nine_button = document.getElementById("nine");
-// const four_button = document.getElementById("four");
-// const five_button = document.getElementById("five");
-// const six_button = document.getElementById("six");
-// const one_button = document.getElementById("one");
-// const two_button = document.getElementById("two");
-// const three_button = document.getElementById("three");
-// const zero_button = document.getElementById("zero");
-
 const number_button = document.querySelectorAll(".number");
-console.log(number_button);
+const equals_button = document.getElementById("equals");
+const divide_button = document.getElementById("divide");
+const multiply_button= document.getElementById("multiply");
+const subtract_button= document.getElementById("subtract");
+const plus_button = document.getElementById("plus");
 
 //FUNCTIONS
 function addNum(a,b){
@@ -36,21 +33,68 @@ function multNum(a,b) {
 
 function operate(a,b,operation){
     return operation(a,b);
+  
 }
 
-function display(){
 
-}
 
+//EVENT LISTENERS
 number_button.forEach (el=>el.addEventListener('click', ()=>{
     display_div.textContent = el.textContent;
+    num1=(el.textContent*1)
 }))
 
 
+divide_button.addEventListener('click', ()=>{
+    operation = divNum;
+    console.log(operation);
+})
 
-console.log("10 + 5 ="+ addNum(10,5));
-console.log("10 - 5 ="+subNum (10,5));
-console.log("10/5 =" +divNum (10,5));
-console.log("10 x 5 =" +multNum (10,5));
+multiply_button.addEventListener('click', ()=>{
+    operation = multNum;
+    console.log(operation);
+})
 
-console.log(operate(10,5,divNum));
+subtract_button.addEventListener('click', ()=>{
+    operation = subNum;
+    console.log(operation);
+})
+
+plus_button.addEventListener('click', ()=>{
+    operation = addNum;
+    console.log(operation);
+})
+
+
+equals_button.addEventListener('click', ()=>{
+   total = operate(num1, num2, operation);
+   display_div.textContent = total;
+   
+})
+
+console.log(num1)
+console.log(num2)
+console.log(operation);
+
+//console.log(storedValues);
+ 
+
+
+
+
+
+
+
+
+
+// console.log("10 + 5 ="+ addNum(10,5));
+// console.log("10 - 5 ="+subNum (10,5));
+// console.log("10/5 =" +divNum (10,5));
+// console.log("10 x 5 =" +multNum (10,5));
+
+// console.log(operate(10,5,divNum));
+
+
+
+//---------------------------TODO-------------------
+//Store value of numbers to either array or seperate variables
