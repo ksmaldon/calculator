@@ -1,0 +1,44 @@
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    background-color: peachpuff;
+    display: flex;
+    justify-content: center;
+}
+
+.calculator{
+    height: 500px;
+    width: 400px;
+    background-color: gray;
+}
+
+.display{
+    width: 370px;
+    height: 80px;
+    margin: 15px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    j
+}
+
+.button-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.button{
+    height: 75px;
+    width: 75px;
+}
+
