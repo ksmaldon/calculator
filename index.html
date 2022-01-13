@@ -6,42 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quantico:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="calculator">
     <div class="display">
-        <p></p>
+        <div class="calc"></div>
+        <div class="total"></div>
     </div>
     <div class="button-container">
-        <button id="clear">AC</button>
-        <div class="row1">
-            <button class="number button" id="seven">7</button>
-            <button class="number button" id="eight">8</button>
-            <button class="number button" id="nine">9</button>
-            <button class="operator button" id="divide">÷</button> 
+        <div class="rows">
+            <div class="row 1">
+                <button class = "button clear " id="clear">AC</button>
+                <button class="button clear" id="delete" >Del</button>
+                <button class="operand button calc-text" id="plus">+</button>
+                     
+            </div>
+            <div class="row 2">
+                <button class="number button calc-text" id="seven">7</button>
+                <button class="number button calc-text" id="eight">8</button>
+                <button class="number button calc-text" id="nine">9</button>
+                    
+            </div>
+            <div class="row 3">
+                <button class="number button calc-text" id="four">4</button>
+                <button class="number button calc-text" id="five">5</button>
+                <button class="number button calc-text" id="six">6</button>
+                   
+            </div>
+            <div class="row 4">
+                <button class="number button calc-text" id="one">1</button>
+                <button class="number button calc-text" id="two">2</button>
+                <button class="number button calc-text" id="three">3</button>
+            </div>
+            <div class="row 5">
+                <button class="number button calc-text" id="zero">0</button>   
+                <button class="number button calc-text">00</button>  
+                <button class="number button calc-text" id="decimal">.</button> 
+            </div>
         </div>
-        <div class="row2">
-            <button class="number button" id="four">4</button>
-            <button class="number button" id="five">5</button>
-            <button class="number button" id="six">6</button>
-            <button class="operator button" id="multiply">x</button>
+        <div class="column-container">
+            <button class="operand button column calc-text" id="multiply">x</button> 
+            <button class="operand button column calc-text" id="subtract">-</button> 
+            <button class="operand button column calc-text" id="divide">÷</button> 
+            <button class="button column calc-text" id="equals">=</button>
         </div>
-        <div class="row3">
-            <button class="number button" id="one">1</button>
-            <button class="number button" id="two">2</button>
-            <button class="number button" id="three">3</button>
-            <button class="operator button" id="subtract">-</button> 
-        </div>
-        <div class="row4">
-            <button class="number button" id="zero">0</button>
-            <button class="operator button" id="decimal">.</button>
-            <button class="button" id="equals">=</button>
-            <button class="operator button" id="plus">+</button>
-        </div>
-
-        
-
-
     </div>
 </div>
 

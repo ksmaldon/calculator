@@ -1,41 +1,145 @@
+*{
+    margin: 0;
+    padding: 0; 
+}
+
+
 html{
     height: 100%;
+    box-shadow:inset 0 0 0 2000px hsla(200, 15%, 92%, 0.7);
 }
 
 body{
     height: 100%;
-    background-color: peachpuff;
+    background-image: url(images/mario_clouds_desktop_by_sadistmoi_d23mm2j.jpg);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .calculator{
-    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 600px;
     width: 400px;
-    background-color: gray;
+    border-radius: 8px;
+    background-color: #f2e4fd;
+    box-shadow: rgba(0, 0, 0, 0.589) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
 }
 
 .display{
-    width: 370px;
-    height: 80px;
-    margin: 15px;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.button-container{
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    margin-top: 8px;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 100px;
+    width:340px;
+    margin-top: 15px;
+    padding-right: 10px;
+    background-color: rgb(248, 248, 242);
+    box-shadow: inset 1px 1px 3px rgb(71, 71, 71);
+    border:1.5px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    font-size: 30px;
+    font-family: 'Quantico', sans-serif;    
+}
+
+.calc{
+    font-size: 15px;
+}
+.button-container{
+    display: flex;
+    gap:6px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rows{
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.column-container{
+   display: flex;
+   flex-direction: column;
+}
+.column{
+    margin-bottom: 10px;
 }
 
 .button{
-    height: 75px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 65px;
     width: 75px;
+    margin-right: 8px;
+    border-style: none;
+    border-radius: 8px;
+    border: 1px solid white ;
+    text-decoration: none; 
+    font-size: 20px;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;  
 }
+
+.number{
+    background: #FFCBC4;
+    box-shadow: 4px 4px 0px 0px #FFA7A6, 4px 4px 0px 2px rgb(80, 79, 79);
+}
+
+.number:active {
+  background-color: #FFCBC4;
+  box-shadow: inset 4px 4px 0px 0px #FFA7A6;
+  transform: translateY(4px);
+}
+    
+
+.operand.button{
+    background-color: #adeadb;
+    box-shadow: 4px 4px 0px 0px #63d3cd, 4px 4px 0px 2px rgb(80, 79, 79);
+}
+
+.operand:active {
+    background-color: #adeadb;
+    box-shadow: inset 4px 4px 0px 0px #63d3cd;
+    transform: translateY(4px);
+  }
+
+
+.clear{
+    background-color: #ffffb8;
+    box-shadow: 4px 4px 0px 0px #f5da41, 4px 4px 0px 2px rgb(80, 79, 79);
+}
+
+.clear:active {
+    background-color: #ffffb8;
+    box-shadow: inset 4px 4px 0px 0px #f5da41;
+    transform: translateY(4px);
+  }
+
+#equals{
+    background-color: #adeadb; 
+    height: 140px;
+    width: 75px;
+    box-shadow: 4px 4px 0px 0px #63d3cd, 4px 4px 0px 2px rgb(80, 79, 79);
+}
+#equals:active {
+    background-color: #adeadb; 
+    box-shadow: inset 4px 4px 0px 0px #63d3cd;
+    transform: translateY(4px);
+  }
+
+
+
+
+
 
