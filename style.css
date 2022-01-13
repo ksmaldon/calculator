@@ -17,6 +17,10 @@ body{
     align-items: center;
 }
 
+button:hover, button:focus {
+    outline: none;
+}
+
 .calculator{
     display: flex;
     flex-direction: column;
