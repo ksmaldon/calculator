@@ -66,9 +66,14 @@ if(operandIsClicked===false){
 
 //EVENT LISTENERS
 number_button.forEach (el=>el.addEventListener('click', ()=>{
-    display+=el.textContent;
+    if (display.length<20){
+      display+=el.textContent;  
+      
+    }else{
     total_div.textContent=display;
-    total_div.textContent=display_div.textContent.substring(0,15)
+    }
+    
+    //total_div.textContent=total_div.textContent.substring(0,15)
     storeNum()
     console.log(display);
 }))
@@ -186,3 +191,4 @@ function clear(){
 //Add media query
 //add click sound
 //add total in corner
+//disable double tap zoom and highlighting

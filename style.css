@@ -48,7 +48,7 @@ button:hover, button:focus {
     width:340px;
     margin-top: 15px;
     padding-right: 10px;
-    background-color: rgb(248, 248, 242);
+    background-color: rgb(255, 255, 255);
     box-shadow: inset 1px 1px 3px rgb(71, 71, 71);
     border:1.5px solid rgb(0, 0, 0);
     border-radius: 5px;
@@ -106,20 +106,24 @@ button:hover, button:focus {
 
 .number:active {
   background-color: #FFCBC4;
-  box-shadow: inset 4px 4px 0px 0px #FFA7A6;
-  transform: translateY(4px);
+  box-shadow:  inset 1px 1px 0px 1px rgb(80, 79, 79), inset 6px 6px 0px 0px #FFA7A6;
+  
+  transform: translate(3px, 4px) scale(1.068, 1.098) ;
+ 
 }
     
 
 .operand.button{
     background-color: #adeadb;
     box-shadow: 4px 4px 0px 0px #63d3cd, 4px 4px 0px 2px rgb(80, 79, 79);
+    
 }
 
 .operand:active {
     background-color: #adeadb;
-    box-shadow: inset 4px 4px 0px 0px #63d3cd;
-    transform: translateY(4px);
+    box-shadow:  inset 1px 1px 0px 1px rgb(80, 79, 79), inset 6px 6px 0px 0px #63d3cd;
+    transform: translate(3px, 4px) scale(1.068, 1.098) ;
+
   }
 
 
@@ -130,8 +134,8 @@ button:hover, button:focus {
 
 .clear:active {
     background-color: #ffffb8;
-    box-shadow: inset 4px 4px 0px 0px #f5da41;
-    transform: translateY(4px);
+    box-shadow:  inset 1px 1px 0px 1px rgb(80, 79, 79), inset 6px 6px 0px 0px #f5da41;
+    transform: translate(3px, 4px) scale(1.068, 1.098) ;
   }
 
 #equals{
@@ -142,8 +146,8 @@ button:hover, button:focus {
 }
 #equals:active {
     background-color: #adeadb; 
-    box-shadow: inset 4px 4px 0px 0px #63d3cd;
-    transform: translateY(4px);
+    box-shadow:  inset 1px 1px 0px 1px rgb(80, 79, 79), inset 6px 6px 0px 0px #63d3cd;
+    transform: translate(3px, 4px) scale(1.068, 1.05) ;
   }
 
 
