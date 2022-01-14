@@ -4,27 +4,19 @@ let num1;
 let num2;
 let total;
 let display="";
-let calc=""
 let operandIsClicked = false;
+let decimalIsClicked = false;
 
 //DOM ELEMENTS
-const calc_div = document.querySelector(".calc");
-const total_div=document.querySelector(".total");
+
+const display_div=document.querySelector(".display");
 const number_button = document.querySelectorAll(".number");
 const operand_button = document.querySelectorAll(".operand");
 const equals_button = document.getElementById("equals");
+const decimal_button = document.getElementById("decimal");
 const clear_button = document.getElementById("clear");
 const del_button = document.getElementById("delete")
-const calc_button = document.querySelectorAll(".calc-text");
 
-
-calc_button.forEach(el=>el.addEventListener('click', ()=>{
-    if(operandIsClicked===true){
-     calc+=el.textContent;
-      
-    }
-    
-}))
 //FUNCTIONS
 function addNum(a,b){
     return ((a*1)+(b*1));
@@ -50,54 +42,80 @@ function storeNum () {
 if(total>0){
     num1=total;
 }
-
 if(operandIsClicked===false){
-    num1=total_div.textContent
-}else if(operandIsClicked===true){
-    num2=total_div.textContent;
+    num1=display_div.textContent
+    }else if(operandIsClicked===true){
+    num2=display_div.textContent;
 }
-//console.log("num1= "+num1);
-//console.log("num2= "+num2);
+console.log("num1= "+num1);
+console.log("num2= "+num2);
 
 }
 
+function clear(){
+    display_div.textContent = "";
+    display="";
+    num1="";
+    num2="";
+    total="";
+    operandIsClicked=false
+}
 
-//console.log(operate(2,4,multNum));
+function writeDisplay(el){
+    if(el.textContent==='.'){
+        decimalIsClicked=true;
+    }
+    if(display.length<17){
+        display+=el.textContent; 
+        if(decimalIsClicked===true&&display.includes('.')){
+        return;
+        }
+    }
+    
+     display_div.textContent=display;
+}
+
+
 
 //EVENT LISTENERS
 number_button.forEach (el=>el.addEventListener('click', ()=>{
-    if (display.length<20){
-      display+=el.textContent;  
-      
-    }else{
-    total_div.textContent=display;
-    }
     
-    //total_div.textContent=total_div.textContent.substring(0,15)
+    writeDisplay(el);
     storeNum()
-    console.log(display);
-}))
+    
+    
+}));
 
 
 operand_button.forEach(el=>el.addEventListener('click', ()=>{
     const operand = el.textContent;
+    operandIsClicked=true; 
+    console.log(operandIsClicked);
     display="";
-    //total_div.textContent=""
-    operandIsClicked=true;
-    calc_div.textContent=calc; 
+    console.log(display)
     if(num1>0&&num2>0){
         total = operate(num1, num2, operation);
+        console.log(total);
+    }
+if (display_div.textContent===num2){
+        display_div.textContent=total;
     }
 
-   if (operand ==="÷"){
-    operation = divNum;
-    }else if (operand==="x"){
-       operation = multNum;
-   }else if (operand ==="-"){
-       operation = subNum;
-   }else if (operand==="+"){
-       operation = addNum;
-   }
+
+    switch(operand){
+        case '÷':
+            operation = divNum;
+            break;
+        case 'x':
+            operation = multNum
+            break;
+        case '-':
+            operation = subNum;
+            break;
+        case '+':
+            operation = addNum;  
+    }
+     
 }))
 
 
@@ -105,13 +123,14 @@ clear_button.addEventListener('click', clear);
 
 del_button.addEventListener('click',()=>{
     display=display.slice(0,-1);
-    total_div.textContent=display;
+    display_div.textContent=display;
 });
 
 
 equals_button.addEventListener('click', ()=>{
    total = operate(num1, num2, operation);
-   total_div.textContent = total;
+   display_div.textContent = total;
+   display=""
    operandIsClicked=false;
 })
 
@@ -122,15 +141,7 @@ equals_button.addEventListener('click', ()=>{
 
  
 
-function clear(){
-    total_div.textContent = "";
-    display="";
-    num1="";
-    num2="";
-    total="";
-    calc="";
-    calc_div.textContent="";
-}
+
 
 
 
@@ -191,4 +202,4 @@ function clear(){
 //Add media query
 //add click sound
 //add total in corner
-//disable double tap zoom and highlighting
+//disable double tap zoom and highlighting//
