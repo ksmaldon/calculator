@@ -7,6 +7,8 @@ let display="";
 let operandIsClicked = false;
 let decimalIsClicked = false;
 
+
+
 //DOM ELEMENTS
 const display_div=document.querySelector(".display");
 const number_button = document.querySelectorAll(".number");
@@ -16,6 +18,7 @@ const decimal_button = document.getElementById("decimal");
 const clear_button = document.getElementById("clear");
 const del_button = document.getElementById("delete")
 
+display_div.textContent=display_div.textContent.substring(0,17);
 //FUNCTIONS
 function addNum(a,b){
     return ((a*1)+(b*1));
