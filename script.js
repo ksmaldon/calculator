@@ -8,7 +8,6 @@ let operandIsClicked = false;
 let decimalIsClicked = false;
 
 //DOM ELEMENTS
-
 const display_div=document.querySelector(".display");
 const number_button = document.querySelectorAll(".number");
 const operand_button = document.querySelectorAll(".operand");
@@ -62,16 +61,9 @@ function clear(){
 }
 
 function writeDisplay(el){
-    if(el.textContent==='.'){
-        decimalIsClicked=true;
-    }
-    if(display.length<17){
+    if(display.length<17 && !(el.textContent==='.' && display_div.textContent.includes('.'))){
         display+=el.textContent; 
-        if(decimalIsClicked===true&&display.includes('.')){
-        return;
-        }
     }
-    
      display_div.textContent=display;
 }
 
@@ -79,29 +71,21 @@ function writeDisplay(el){
 
 //EVENT LISTENERS
 number_button.forEach (el=>el.addEventListener('click', ()=>{
-    
     writeDisplay(el);
     storeNum()
-    
-    
 }));
 
 
 operand_button.forEach(el=>el.addEventListener('click', ()=>{
+    display="";
     const operand = el.textContent;
     operandIsClicked=true; 
-    console.log(operandIsClicked);
-    display="";
-    console.log(display)
     if(num1>0&&num2>0){
         total = operate(num1, num2, operation);
-        console.log(total);
     }
-if (display_div.textContent===num2){
+    if (display_div.textContent===num2){
         display_div.textContent=total;
     }
-
-
     switch(operand){
         case '÷':
             operation = divNum;
@@ -114,10 +98,8 @@ if (display_div.textContent===num2){
             break;
         case '+':
             operation = addNum;  
-    }
-     
+    } 
 }))
-
 
 clear_button.addEventListener('click', clear);
 
@@ -126,17 +108,14 @@ del_button.addEventListener('click',()=>{
     display_div.textContent=display;
 });
 
-
 equals_button.addEventListener('click', ()=>{
-   total = operate(num1, num2, operation);
-   display_div.textContent = total;
-   display=""
-   operandIsClicked=false;
+    total = operate(num1, num2, operation);
+    display_div.textContent = total;
+    display=""
+    num2=""
+    operandIsClicked=false;
 })
 
-//console.log(num1)
-//console.log(num2)
-//console.log(operation);
 
 
  
@@ -203,3 +182,4 @@ equals_button.addEventListener('click', ()=>{
 //add click sound
 //add total in corner
 //disable double tap zoom and highlighting//
+//disable rotation
