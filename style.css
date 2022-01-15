@@ -29,8 +29,15 @@ body{
    -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
+.disable-zoom{
+    user-zoom: none;
+    
+    
+}
+
 button:hover, button:focus {
     outline: none;
+    touch-action: manipulation;
 }
 
 .calculator{
