@@ -164,14 +164,14 @@ number_button.forEach (el=>el.addEventListener('click', ()=>{
     storeNum()
     numberIsClicked=true;
     equalIsClicked = false;
-    playClick();
+    //playClick();
     
 }));
 
 decimal_button.addEventListener('click', ()=>{
     writeDisplay(decimal);
     storeNum();
-    playClick();
+    //playClick();
     if(display_div.textContent==="ERROR"){
         return
     }
@@ -179,7 +179,7 @@ decimal_button.addEventListener('click', ()=>{
 
 operand_button.forEach(el=>el.addEventListener('click', ()=>{
     display="";
-    playClick()
+    //playClick()
     const operand = el.textContent;
     operandIsClicked=true; 
     numberIsClicked =false;
@@ -209,7 +209,7 @@ operand_button.forEach(el=>el.addEventListener('click', ()=>{
 }))
 
 clear_button.addEventListener('click', ()=>{
-    playClick()
+    //playClick()
     clear() 
     
    
@@ -217,7 +217,7 @@ clear_button.addEventListener('click', ()=>{
 });
 
 del_button.addEventListener('click',()=>{
-    playClick()
+    //playClick()
     if(display_div.textContent==="ERROR"){
         clear()
     }else{
@@ -229,7 +229,7 @@ del_button.addEventListener('click',()=>{
 
 equals_button.addEventListener('click', ()=>{
     equalIsClicked=true;
-    playClick()
+    //playClick()
     operandIsClicked=false;
    
     if (!operation){
