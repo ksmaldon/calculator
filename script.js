@@ -1,12 +1,13 @@
 //VARIABLES
-let operation;
+let operation="";
 let num1;
 let num2;
 let total;
 let display="";
 let operandIsClicked = false;
 let decimalIsClicked = false;
-
+let numberIsClicked =false;
+let equalIsClicked = false;
 
 
 //DOM ELEMENTS
@@ -19,6 +20,8 @@ const clear_button = document.getElementById("clear");
 const del_button = document.getElementById("delete")
 
 display_div.textContent=display_div.textContent.substring(0,17);
+
+
 //FUNCTIONS
 function addNum(a,b){
     return ((a*1)+(b*1));
@@ -41,13 +44,17 @@ function operate(a,b,operation){
 }
 
 function storeNum () {
-if(total>0){
+
+if( equalIsClicked===true && operandIsClicked == false){
+    total=""
+}
+if((total>0 && equalIsClicked ===true && operandIsClicked === true)||((total>0 && operandIsClicked == true))){ 
     num1=total;
 }
 if(operandIsClicked===false){
-    num1=display_div.textContent
-    }else if(operandIsClicked===true){
-    num2=display_div.textContent;
+    num1= display;
+}else if(operandIsClicked===true){
+    num2= display;
 }
 console.log("num1= "+num1);
 console.log("num2= "+num2);
@@ -55,7 +62,7 @@ console.log("num2= "+num2);
 }
 
 function clear(){
-    display_div.textContent = "";
+    display_div.textContent = "0";
     display="";
     num1="";
     num2="";
@@ -63,31 +70,128 @@ function clear(){
     operandIsClicked=false
 }
 
+
 function writeDisplay(el){
-    if(display.length<17 && !(el.textContent==='.' && display_div.textContent.includes('.'))){
-        display+=el.textContent; 
+
+    
+   if ((display.includes(".") && display.length>9)|| (!display.includes(".") && display.length>=9)){
+       return;
+   }
+    if (el.textContent==="." && display_div.textContent.includes(".")&& operandIsClicked===false){//One Decimal
+        return;
     }
-     display_div.textContent=display;
+    if((display_div.textContent==="0" && (el.textContent==="0" || el.textContent==="00"))){//One 0
+        return;
+    }
+   if (display=="" && el.textContent==="." ){//Decimal pressed first becomes 0.
+        display+="0.";   
+    }else{
+        display+=el.textContent;
+    }
+    if(display.includes(".")){
+        display_div.textContent= display; 
+    }else if (!display.includes(".")){
+        display_div.textContent = parseInt(display).toLocaleString();
+    }
+      
+    }
+     
+
+function formatTotal(total){
+    let totalString = total.toString();
+    let rounded;
+    console.log(totalString.length)
+    console.log (total);
+    
+    
+    if(totalString.includes(".")){
+        rounded = ((Math.round(total*100)/100).toString());
+        if(rounded.length>9){
+            display_div.textContent= parseInt(rounded).toExponential(5)
+        }else{
+            display_div.textContent=rounded 
+        }
+        console.log(rounded.length);
+    }
+    if(totalString.length<9 && totalString.includes(".")){
+        display_div.textContent =total;
+    }
+    if(totalString.length>9 && !totalString.includes(".")){
+        display_div.textContent=total.toExponential(5);
+    }else if (totalString.length<=9 && !totalString.includes(".")){
+        display_div.textContent =total.toLocaleString();     
+    }
 }
 
+function playClick(){
+    const audio = new Audio("sounds/click.wav");
+    audio.play();
+}
+
+function clickButtonEl(key){
+    number_button.forEach(button =>{
+        if (button.textContent === key){
+            button.click();
+        }
+    })
+    if (decimal_button.textContent === key){
+            decimal_button.click();
+        }
+    }
 
 
 //EVENT LISTENERS
+window.addEventListener('keydown', (e) => {
+    if(
+        e.key === "0"||
+        e.key === "1"||
+        e.key === "2"||
+        e.key === "3"||
+        e.key === "4"||
+        e.key === "5"||
+        e.key === "6"||
+        e.key === "7"||
+        e.key === "8"||
+        e.key === "9"||
+       e.key === "."
+    ){
+        clickButtonEl(e.key)
+    }
+})
+
 number_button.forEach (el=>el.addEventListener('click', ()=>{
     writeDisplay(el);
     storeNum()
+    numberIsClicked=true;
+    equalIsClicked = false;
+    playClick();
+    
 }));
 
+decimal_button.addEventListener('click', ()=>{
+    writeDisplay(decimal);
+    storeNum();
+    playClick();
+    if(display_div.textContent==="ERROR"){
+        return
+    }
+})
 
 operand_button.forEach(el=>el.addEventListener('click', ()=>{
     display="";
+    playClick()
     const operand = el.textContent;
     operandIsClicked=true; 
+    numberIsClicked =false;
+
+    if(display_div.textContent==="ERROR"){
+        operandIsClicked=false;
+    }
     if(num1>0&&num2>0){
         total = operate(num1, num2, operation);
     }
-    if (display_div.textContent===num2){
-        display_div.textContent=total;
+    if ((display_div.textContent.replace(/,/g, ''))===num2){
+        formatTotal(total)
     }
     switch(operand){
         case '÷':
@@ -104,62 +208,49 @@ operand_button.forEach(el=>el.addEventListener('click', ()=>{
     } 
 }))
 
-clear_button.addEventListener('click', clear);
+clear_button.addEventListener('click', ()=>{
+    playClick()
+    clear() 
+    
+   
+    
+});
 
 del_button.addEventListener('click',()=>{
-    display=display.slice(0,-1);
-    display_div.textContent=display;
+    playClick()
+    if(display_div.textContent==="ERROR"){
+        clear()
+    }else{
+        display=display.slice(0,-1);
+        display_div.textContent=display;
+    }
+    
 });
 
 equals_button.addEventListener('click', ()=>{
-    total = operate(num1, num2, operation);
-    display_div.textContent = total;
+    equalIsClicked=true;
+    playClick()
+    operandIsClicked=false;
+   
+    if (!operation){
+        display_div.textContent="ERROR";
+        display=""
+    }
+    if( (operation === divNum && (num2==0 || num2==null || num2 ==00)||
+        (numberIsClicked===false && operandIsClicked===true)||
+        (display_div.textContent==="ERROR"))){
+            display_div.textContent="ERROR";
+    }else{
+        total =(operate(num1, num2, operation));
+        formatTotal(total);
+        
+        console.log(total.length)
+    }
     display=""
     num2=""
-    operandIsClicked=false;
+    operation=""
+    
 })
-
-
-
- 
-
-
-
-
-
-
-
-
-
-// console.log("10 + 5 ="+ addNum(10,5));
-// console.log("10 - 5 ="+subNum (10,5));
-// console.log("10/5 =" +divNum (10,5));
-// console.log("10 x 5 =" +multNum (10,5));
-
-// console.log(operate(10,5,divNum));
-
-
-
-
-// divide_button.addEventListener('click', ()=>{
-//     operation = divNum;
-//     console.log(operation);
-// })
-
-// multiply_button.addEventListener('click', ()=>{
-//     operation = multNum;
-//     console.log(operation);
-// })
-
-// subtract_button.addEventListener('click', ()=>{
-//     operation = subNum;
-//     console.log(operation);
-// })
-
-// plus_button.addEventListener('click', ()=>{
-//     operation = addNum;
-//     console.log(operation);
-// })
 
 
 
@@ -186,3 +277,10 @@ equals_button.addEventListener('click', ()=>{
 //add total in corner
 //disable double tap zoom and highlighting//
 //disable rotation
+//limit number of decimal
+//make fon smaller on mobile and add padding lef to center
+//off screen when using decimal
+//stop scroll
+//add error messages
+//fix exponentials
+//error whre numver is pressed dorectly after equals
